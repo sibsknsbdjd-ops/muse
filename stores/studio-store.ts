@@ -33,6 +33,7 @@ interface StudioState {
   setTripParams: (p: Partial<TripParams>) => void;
   setGeneralIdea: (s: string) => void;
   addHistory: (e: HistoryEntry) => void;
+  setHistory: (entries: HistoryEntry[]) => void;
   removeHistory: (id: string) => void;
   clearHistory: () => void;
 }
@@ -107,6 +108,7 @@ export const useStudioStore = create<StudioState>()(
         set((s) => ({ tripParams: { ...s.tripParams, ...p } })),
       setGeneralIdea: (generalIdea) => set({ generalIdea }),
       addHistory: (e) => set((s) => ({ history: [e, ...s.history] })),
+      setHistory: (history) => set({ history }),
       removeHistory: (id) =>
         set((s) => ({ history: s.history.filter((h) => h.id !== id) })),
       clearHistory: () => set({ history: [] }),

@@ -15,6 +15,8 @@ import { buildVideoPrompt, type BuiltPrompt } from '@/lib/builders/video';
 import { checkVideoCapabilities } from '@/lib/capabilities';
 import type { AspectRatio } from '@/lib/capabilities';
 import { useStudioStore } from '@/stores/studio-store';
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/client';
+import { pushPrompt } from '@/lib/sync';
 
 const inputCls =
   'w-full rounded border px-3 py-2 text-sm dark:bg-neutral-900 dark:border-neutral-700';
@@ -115,13 +117,24 @@ export default function StudioPage() {
 
   const save = () => {
     if (!built.zh) return;
-    addHistory({
-      id: `${Date.now()}`,
+    const entry = {
+      id: crypto.randomUUID(),
       scenario,
       zh: built.zh,
       en: built.en,
       createdAt: Date.now(),
-    });
+    };
+    addHistory(entry);
+    // If signed in, mirror the entry to the cloud (fire and forget;
+    // the next full sync reconciles anything that failed).
+    if (isSupabaseConfigured()) {
+      const supabase = createClient();
+      supabase.auth.getUser().then(({ data }) => {
+        if (data.user) {
+          pushPrompt(supabase, data.user.id, entry).catch(() => undefined);
+        }
+      });
+    }
   };
 
   // ---- per-scenario smart completion wiring ----
