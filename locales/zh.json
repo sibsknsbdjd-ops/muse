@@ -1,0 +1,20 @@
+{
+  "app": { "name": "Muse Prompt Studio", "tagline": "一句话想法，变成能直接发给 Muse 的专业提示词" },
+  "nav": { "home": "首页", "studio": "创作", "templates": "模板库", "history": "历史" },
+  "scenario": {
+    "video": "AI 视频生成",
+    "image": "AI 图片生成",
+    "document": "文档写作",
+    "trip": "行程规划",
+    "general": "通用任务"
+  },
+  "studio": {
+    "idea": "你的想法",
+    "preview": "提示词预览",
+    "copy": "复制",
+    "copied": "已复制，去粘贴给 Muse 吧",
+    "export": "导出 .md",
+    "zh": "中文",
+    "en": "English"
+  }
+}

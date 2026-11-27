@@ -1,0 +1,20 @@
+{
+  "app": { "name": "Muse Prompt Studio", "tagline": "Turn one plain idea into a professional prompt for Muse" },
+  "nav": { "home": "Home", "studio": "Studio", "templates": "Templates", "history": "History" },
+  "scenario": {
+    "video": "AI Video",
+    "image": "AI Image",
+    "document": "Document Writing",
+    "trip": "Trip Planning",
+    "general": "General Task"
+  },
+  "studio": {
+    "idea": "Your idea",
+    "preview": "Prompt preview",
+    "copy": "Copy",
+    "copied": "Copied — go paste it to Muse",
+    "export": "Export .md",
+    "zh": "中文",
+    "en": "English"
+  }
+}
